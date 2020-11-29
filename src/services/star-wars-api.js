@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const starWarsApi = axios.create({
   baseURL: 'https://swapi.dev/api/',
-  timeout: 1000,
+  timeout: 3000,
 });
 
 export const searchPeople = (term) => starWarsApi.get('people', {
