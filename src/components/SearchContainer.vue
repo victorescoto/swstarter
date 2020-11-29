@@ -33,7 +33,7 @@
         id="search-term"
         class="w-full p-4 rounded-lg border border-gray shadow-search-input white text-2xl font-bold text-default"
         type="text"
-        v-model="term"
+        v-model="searchTerm"
         :placeholder="placeholder"
       />
     </div>
@@ -42,39 +42,53 @@
       <button
         id="search-button"
         type="button"
-        class="w-full rounded-search-button p-3 text-2xl font-bold text-white transition"
+        class="w-full rounded-search-button p-3 text-2xl font-bold text-white transition uppercase"
         :class="{
-          'bg-gray cursor-not-allowed': searchDisabled,
+          'bg-gray': searchDisabled,
+          'cursor-not-allowed': searchDisabled || loading,
           'bg-primary cursor-pointer' : !searchDisabled
         }"
-        :disabled="searchDisabled"
+        :disabled="searchDisabled || loading"
+        @click="searchItems({ searchTerm, searchType })"
       >
-        Search
+        <template v-if="loading">Searching...</template>
+        <template v-else>Search</template>
       </button>
     </div>
   </section>
 </template>
 
 <script>
-import { PEOPLE_SEARCH_TYPE, MOVIE_SEARCH_TYPE } from '@/constants';
+import { mapActions, mapGetters } from 'vuex';
+import { PEOPLE_SEARCH_TYPE, MOVIE_SEARCH_TYPE } from '@/store/strings';
+import { IS_SEARCHING } from '@/store/getters';
+import { SEARCH_ITEMS } from '@/store/actions';
 
 export default {
   name: 'SearchContainer',
   data() {
     return {
       searchType: PEOPLE_SEARCH_TYPE,
-      term: '',
+      searchTerm: '',
     };
   },
   computed: {
+    ...mapGetters({
+      loading: IS_SEARCHING,
+    }),
     placeholder() {
       return this.searchType === PEOPLE_SEARCH_TYPE
         ? 'e.g. Chewbacca, Yoda, Boba Fett'
         : 'e.g. A New Hope, The Empire Strikes Back';
     },
     searchDisabled() {
-      return this.term.length === 0;
+      return this.searchTerm.length === 0;
     },
+  },
+  methods: {
+    ...mapActions({
+      searchItems: SEARCH_ITEMS,
+    }),
   },
   created() {
     this.PEOPLE_SEARCH_TYPE = PEOPLE_SEARCH_TYPE;
