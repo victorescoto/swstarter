@@ -47,6 +47,7 @@
           'bg-gray cursor-not-allowed': searchDisabled,
           'bg-primary cursor-pointer' : !searchDisabled
         }"
+        :disabled="searchDisabled"
       >
         Search
       </button>
