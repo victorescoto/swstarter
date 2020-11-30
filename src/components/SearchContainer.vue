@@ -35,6 +35,7 @@
         type="text"
         v-model="searchTerm"
         :placeholder="placeholder"
+        @keyup.enter="searchItems({ searchTerm, searchType })"
       />
     </div>
 

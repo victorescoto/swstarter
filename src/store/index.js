@@ -22,6 +22,10 @@ export const mutations = {
 
 export const actions = {
   [SEARCH_ITEMS]: ({ commit }, { searchTerm, searchType }) => {
+    if (!searchTerm) {
+      return;
+    }
+
     commit(SET_SEARCH_LOADING, true);
     commit(SET_SEARCH_RESULTS, []);
 
