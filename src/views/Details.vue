@@ -34,7 +34,10 @@
     <div class="absolute bottom-14">
       <router-link
         :to="{ name: 'Home' }"
-        class="rounded-search-button py-3 px-8 text-2xl font-bold text-white transition uppercase bg-primary cursor-pointer"
+        class="
+          rounded-search-button py-3 px-8 text-xl font-bold text-white
+          transition uppercase bg-primary cursor-pointer hover:bg-primary-hover
+        "
       >
         Back to Search
       </router-link>

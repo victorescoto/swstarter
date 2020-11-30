@@ -21,8 +21,8 @@
           <button
             @click="seeDetails(result)"
             class="
-              rounded-search-button py-3 px-8 text-2xl font-bold text-white
-              transition uppercase bg-primary cursor-pointer
+              rounded-search-button py-3 px-8 text-xl font-bold text-white
+              transition uppercase bg-primary cursor-pointer hover:bg-primary-hover
             ">
             See Details
           </button>

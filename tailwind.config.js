@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       colors: {
         primary: '#0ab463',
+        'primary-hover': '#089954',
         gainsboro: '#dadada',
         darkgray: '#848484bf',
         gray: '#c4c4c4',
@@ -17,6 +18,11 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
+      },
+      fontSize: {
+        xl: '14px',
+        '2xl': '16px',
+        '3xl': '18px',
       },
       boxShadow: {
         'custom-header': '0 2px 0 0 #dadada',
@@ -37,6 +43,11 @@ module.exports = {
         'details-container': '804px',
         'details-subcontainer': '322px',
       },
+    },
+  },
+  variants: {
+    extend: {
+      backgroundColor: ['hover'],
     },
   },
 };
