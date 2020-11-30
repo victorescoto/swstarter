@@ -34,7 +34,7 @@ describe('SearchContainer.vue', () => {
   });
 
   it('check search-message styles', () => {
-    expect(wrapper.find('#search-message').attributes().class).toBe('mb-1 text-2xl font-semibold text-default');
+    expect(wrapper.find('#search-message').attributes().class).toBe('mb-1 text-xl font-semibold text-default');
   });
 
   it('check search-types-container styles', () => {
@@ -42,17 +42,17 @@ describe('SearchContainer.vue', () => {
 
     expect(wrapper.find('#search-type-people-container').attributes().class).toBe('flex mr-12 items-center');
     expect(wrapper.find('input#people').attributes().class).toBe('mr-4');
-    expect(wrapper.find('input#people + label').attributes().class).toBe('text-2xl text-black font-bold');
+    expect(wrapper.find('input#people + label').attributes().class).toBe('text-xl text-black font-bold');
 
     expect(wrapper.find('#search-type-movies-container').attributes().class).toBe('flex items-center');
     expect(wrapper.find('input#movies').attributes().class).toBe('mr-4');
-    expect(wrapper.find('input#movies + label').attributes().class).toBe('text-2xl text-black font-bold');
+    expect(wrapper.find('input#movies + label').attributes().class).toBe('text-xl text-black font-bold');
   });
 
   it('check search-button-container styles', async () => {
     expect(wrapper.find('#search-button-container').attributes().class).toBe(undefined);
 
-    const baseBtnClasses = 'w-full rounded-search-button p-3 text-2xl font-bold text-white transition uppercase';
+    const baseBtnClasses = 'w-full rounded-search-button p-3 text-xl font-bold text-white transition uppercase';
 
     wrapper.setData({ searchTerm: '' });
     await wrapper.vm.$nextTick();
@@ -60,6 +60,6 @@ describe('SearchContainer.vue', () => {
 
     wrapper.setData({ searchTerm: 'bar' });
     await wrapper.vm.$nextTick();
-    expect(wrapper.find('#search-button').attributes().class).toBe(`${baseBtnClasses} bg-primary cursor-pointer`);
+    expect(wrapper.find('#search-button').attributes().class).toBe(`${baseBtnClasses} bg-primary hover:bg-primary-hover cursor-pointer`);
   });
 });

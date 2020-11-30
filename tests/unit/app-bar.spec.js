@@ -10,6 +10,6 @@ describe('AppBar.vue', () => {
   it('check classes', () => {
     const wrapper = shallowMount(AppBar);
     expect(wrapper.attributes().class).toBe('mb-12 p-6 shadow-custom-header bg-white text-center');
-    expect(wrapper.find('span').attributes().class).toBe('text-primary text-3xl');
+    expect(wrapper.find('span').attributes().class).toBe('text-primary font-bold text-3xl');
   });
 });
