@@ -1,5 +1,5 @@
 <template>
-  <section id="search-container" class="bg-white shadow-search-container rounded-md p-12 mr-10 w-search-container">
+  <section id="search-container" class="bg-white shadow-container rounded-md p-12 mr-10 w-search-container">
     <div id="search-message" class="mb-1 text-2xl font-semibold text-default">
       What are you searching for?
     </div>

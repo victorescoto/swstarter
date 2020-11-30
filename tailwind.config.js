@@ -19,7 +19,7 @@ module.exports = {
       },
       boxShadow: {
         'custom-header': '0 2px 0 0 #dadada',
-        'search-container': '0 1px 2px 0 #dadada',
+        container: '0 1px 2px 0 #dadada',
         'search-input': 'inset 0 1px 3px 0 #dadada',
       },
       borderRadius: {
