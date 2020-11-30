@@ -1,19 +1,23 @@
-import { shallowMount } from '@vue/test-utils';
-import { PEOPLE_SEARCH_TYPE, MOVIE_SEARCH_TYPE } from '@/constants';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+import Vuex from 'vuex';
+import store from '@/store';
+import { PEOPLE_SEARCH_TYPE, MOVIE_SEARCH_TYPE } from '@/store/strings';
 import SearchContainer from '@/components/SearchContainer.vue';
 
+const localVue = createLocalVue();
+localVue.use(Vuex);
+
 describe('SearchContainer.vue', () => {
-  const wrapper = shallowMount(SearchContainer);
+  const wrapper = shallowMount(SearchContainer, { store, localVue });
 
   it('disables the button when there is no term', async () => {
-    wrapper.setData({ term: '' });
+    wrapper.setData({ searchTerm: '' });
     await wrapper.vm.$nextTick();
     expect(wrapper.vm.searchDisabled).toBeTruthy();
   });
 
   it('enables the button when there is no term', async () => {
-    wrapper.setData({ term: 'bar' });
-    await wrapper.vm.$nextTick();
+    wrapper.setData({ searchTerm: 'bar' });
     expect(wrapper.vm.searchDisabled).toBeFalsy();
   });
 
@@ -48,13 +52,13 @@ describe('SearchContainer.vue', () => {
   it('check search-button-container styles', async () => {
     expect(wrapper.find('#search-button-container').attributes().class).toBe(undefined);
 
-    const baseBtnClasses = 'w-full rounded-search-button p-3 text-2xl font-bold text-white transition';
+    const baseBtnClasses = 'w-full rounded-search-button p-3 text-2xl font-bold text-white transition uppercase';
 
-    wrapper.setData({ term: '' });
+    wrapper.setData({ searchTerm: '' });
     await wrapper.vm.$nextTick();
     expect(wrapper.find('#search-button').attributes().class).toBe(`${baseBtnClasses} bg-gray cursor-not-allowed`);
 
-    wrapper.setData({ term: 'bar' });
+    wrapper.setData({ searchTerm: 'bar' });
     await wrapper.vm.$nextTick();
     expect(wrapper.find('#search-button').attributes().class).toBe(`${baseBtnClasses} bg-primary cursor-pointer`);
   });
