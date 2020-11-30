@@ -8,19 +8,19 @@ import { searchPeople, searchMovies } from '../services/star-wars-api';
 
 Vue.use(Vuex);
 
-const getters = {
+export const getters = {
   [IS_SEARCHING]: (state) => state.searchLoading,
   [IS_LOADING_ITEM]: (state) => state.itemLoading,
   [GET_SEARCH_RESULTS]: (state) => state.searchResults.results ?? [],
 };
 
-const mutations = {
+export const mutations = {
   [SET_SEARCH_LOADING]: (state, loading) => { state.searchLoading = loading; },
   [SET_SEARCH_RESULTS]: (state, searchResults) => { state.searchResults = searchResults; },
   [SET_ITEM_LOADING]: (state, loading) => { state.itemLoading = loading; },
 };
 
-const actions = {
+export const actions = {
   [SEARCH_ITEMS]: ({ commit }, { searchTerm, searchType }) => {
     commit(SET_SEARCH_LOADING, true);
     commit(SET_SEARCH_RESULTS, []);
@@ -43,13 +43,17 @@ const actions = {
   },
 };
 
-export default new Vuex.Store({
-  state: {
-    searchLoading: false,
-    itemLoading: false,
-    searchResults: [],
-  },
+export const state = {
+  searchLoading: false,
+  itemLoading: false,
+  searchResults: [],
+};
+
+export const storeConfig = {
+  state,
   getters,
   mutations,
   actions,
-});
+};
+
+export default new Vuex.Store(storeConfig);

@@ -25,8 +25,13 @@ module.exports = {
       borderRadius: {
         'search-button': '20px',
       },
+      minHeight: {
+        'results-container': '582px',
+        'results-list': '490px',
+      },
       width: {
         'search-container': '410px',
+        'results-container': '582px',
       },
     },
   },
