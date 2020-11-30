@@ -14,7 +14,7 @@
         <div
           v-for="result in searchResults"
           :key="getItemIdFromURL(result.url)"
-          class="border-b border-gray py-4 flex items-center justify-between"
+          class="result-item border-b border-gray py-4 flex items-center justify-between"
         >
           <span class="text-2xl font-bold">{{ getName(result) }}</span>
 

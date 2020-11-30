@@ -18,7 +18,21 @@ describe('App', () => {
 
     // Checks button's disabling behaviour
     cy.get('#search-button').should('be.disabled');
-    cy.get('#search-term').type('foo');
+    cy.get('#search-term').type('hope');
     cy.get('#search-button').should('not.disabled');
+
+    cy.intercept({ method: 'GET', url: 'https://swapi.dev/api/films/?search=hope' }).as('searchMovies');
+
+    // Checks search behaviour
+    cy.get('#search-button').click();
+    cy.contains('#search-container', 'Searching...');
+    cy.wait('@searchMovies').then((interception) => {
+      assert.isNotNull(interception.response.body, '1st API call has data');
+    });
+    cy.get('.result-item').should('be.visible');
+
+    // Checks details page
+    cy.get('.result-item > button').click();
+    cy.url().should('include', '/details');
   });
 });
