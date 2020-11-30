@@ -1,2 +1,3 @@
+export const FETCH_RESOURCES_BY_URLS = 'fetchResourcesByUrls';
 export const SEARCH_ITEMS = 'searchItems';
-export const SEARCH_ITEMS2 = 'searchItems2';
+export const SELECT_ITEM = 'selectItem';

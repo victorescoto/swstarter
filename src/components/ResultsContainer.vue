@@ -21,8 +21,8 @@
           <button
             @click="seeDetails(result)"
             class="
-              rounded-search-button py-3 px-8 text-2xl font-bold text-white
-              transition uppercase bg-primary cursor-pointer
+              rounded-search-button py-3 px-8 text-xl font-bold text-white
+              transition uppercase bg-primary cursor-pointer hover:bg-primary-hover
             ">
             See Details
           </button>
@@ -45,7 +45,8 @@
 
 <script>
 import { IS_SEARCHING, GET_SEARCH_RESULTS } from '@/store/getters';
-import { mapGetters } from 'vuex';
+import { SELECT_ITEM } from '@/store/actions';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'ResultsContainer',
@@ -56,14 +57,18 @@ export default {
     }),
   },
   methods: {
+    ...mapActions({
+      selectItem: SELECT_ITEM,
+    }),
     getItemIdFromURL(url) {
       return url.split('/').slice(-2)[0];
     },
     getName(result) {
       return result.name ?? result.title;
     },
-    seeDetails(item) {
-      return console.log(item);
+    seeDetails(result) {
+      this.selectItem(result);
+      this.$router.push({ name: 'Details' });
     },
   },
 };

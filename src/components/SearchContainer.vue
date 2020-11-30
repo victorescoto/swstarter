@@ -1,6 +1,6 @@
 <template>
-  <section id="search-container" class="bg-white shadow-search-container rounded-md p-12 mr-10 w-search-container">
-    <div id="search-message" class="mb-1 text-2xl font-semibold text-default">
+  <section id="search-container" class="bg-white shadow-container rounded-md p-12 mr-10 w-search-container">
+    <div id="search-message" class="mb-1 text-xl font-semibold text-default">
       What are you searching for?
     </div>
 
@@ -13,7 +13,7 @@
           :value="PEOPLE_SEARCH_TYPE"
           v-model="searchType"
         >
-        <label for="people" class="text-2xl text-black font-bold">People</label>
+        <label for="people" class="text-xl text-black font-bold">People</label>
       </div>
 
       <div id="search-type-movies-container" class="flex items-center">
@@ -24,17 +24,18 @@
           :value="MOVIE_SEARCH_TYPE"
           v-model="searchType"
         >
-        <label for="movies" class="text-2xl text-black font-bold">Movies</label>
+        <label for="movies" class="text-xl text-black font-bold">Movies</label>
       </div>
     </div>
 
     <div id="search-term-container" class="my-8">
       <input
         id="search-term"
-        class="w-full p-4 rounded-lg border border-gray shadow-search-input white text-2xl font-bold text-default"
+        class="w-full p-4 rounded-lg border border-gray shadow-search-input white text-xl font-bold text-default"
         type="text"
         v-model="searchTerm"
         :placeholder="placeholder"
+        @keyup.enter="searchItems({ searchTerm, searchType })"
       />
     </div>
 
@@ -42,11 +43,11 @@
       <button
         id="search-button"
         type="button"
-        class="w-full rounded-search-button p-3 text-2xl font-bold text-white transition uppercase"
+        class="w-full rounded-search-button p-3 text-xl font-bold text-white transition uppercase"
         :class="{
           'bg-gray': searchDisabled,
           'cursor-not-allowed': searchDisabled || loading,
-          'bg-primary cursor-pointer' : !searchDisabled
+          'bg-primary hover:bg-primary-hover cursor-pointer' : !searchDisabled
         }"
         :disabled="searchDisabled || loading"
         @click="searchItems({ searchTerm, searchType })"

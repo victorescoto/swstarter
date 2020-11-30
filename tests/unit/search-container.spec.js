@@ -30,7 +30,7 @@ describe('SearchContainer.vue', () => {
   });
 
   it('check component container styles', () => {
-    expect(wrapper.attributes().class).toBe('bg-white shadow-search-container rounded-md p-12 mr-10 w-search-container');
+    expect(wrapper.attributes().class).toBe('bg-white shadow-container rounded-md p-12 mr-10 w-search-container');
   });
 
   it('check search-message styles', () => {
