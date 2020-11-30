@@ -1,20 +1,22 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import {
+  GET_ITEM_DETAILS_LIST,
   GET_SEARCH_RESULTS,
   GET_SELECTED_ITEM,
   IS_LOADING_ITEM,
   IS_SEARCHING,
 } from './getters';
 import {
+  SET_ITEM_DETAIL_LIST,
   SET_ITEM_LOADING,
   SET_SEARCH_LOADING,
   SET_SEARCH_RESULTS,
   SET_SELECTED_ITEM,
 } from './mutation-types';
-import { SEARCH_ITEMS, SELECT_ITEM } from './actions';
+import { SEARCH_ITEMS, SELECT_ITEM, FETCH_RESOURCES_BY_URLS } from './actions';
 import { PEOPLE_SEARCH_TYPE } from './strings';
-import { searchPeople, searchMovies } from '../services/star-wars-api';
+import { searchPeople, searchMovies, getResource } from '../services/star-wars-api';
 
 Vue.use(Vuex);
 
@@ -22,20 +24,23 @@ export const storeConfig = {
   state: {
     searchLoading: false,
     itemLoading: false,
-    searchResults: [],
     selectedItem: null,
+    searchResults: [],
+    itemDetailsList: [],
   },
   getters: {
     [IS_SEARCHING]: (state) => state.searchLoading,
     [IS_LOADING_ITEM]: (state) => state.itemLoading,
     [GET_SEARCH_RESULTS]: (state) => state.searchResults.results ?? [],
     [GET_SELECTED_ITEM]: (state) => state.selectedItem,
+    [GET_ITEM_DETAILS_LIST]: (state) => state.itemDetailsList,
   },
   mutations: {
     [SET_SEARCH_LOADING]: (state, loading) => { state.searchLoading = loading; },
     [SET_SEARCH_RESULTS]: (state, searchResults) => { state.searchResults = searchResults; },
     [SET_ITEM_LOADING]: (state, loading) => { state.itemLoading = loading; },
     [SET_SELECTED_ITEM]: (state, selectedItem) => { state.selectedItem = selectedItem; },
+    [SET_ITEM_DETAIL_LIST]: (state, itemDetailsList) => { state.itemDetailsList = itemDetailsList; },
   },
   actions: {
     [SEARCH_ITEMS]: ({ commit }, { searchTerm, searchType }) => {
@@ -64,6 +69,16 @@ export const storeConfig = {
     },
     [SELECT_ITEM]: ({ commit }, selectedItem) => {
       commit(SET_SELECTED_ITEM, selectedItem);
+    },
+    [FETCH_RESOURCES_BY_URLS]: ({ commit }, urlList) => {
+      const results = [];
+
+      urlList.forEach(async (url) => {
+        const { data } = await getResource(url);
+        results.push(data);
+      });
+
+      commit(SET_ITEM_DETAIL_LIST, results);
     },
   },
 };

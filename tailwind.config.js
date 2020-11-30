@@ -13,6 +13,7 @@ module.exports = {
       },
       textColor: {
         default: '#383838',
+        'detail-link': '#0094ff',
       },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
@@ -28,10 +29,13 @@ module.exports = {
       minHeight: {
         'results-container': '582px',
         'results-list': '490px',
+        'details-container': '417px',
       },
       width: {
         'search-container': '410px',
         'results-container': '582px',
+        'details-container': '804px',
+        'details-subcontainer': '322px',
       },
     },
   },

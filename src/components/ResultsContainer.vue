@@ -68,6 +68,7 @@ export default {
     },
     seeDetails(result) {
       this.selectItem(result);
+      this.$router.push({ name: 'Details' });
     },
   },
 };
