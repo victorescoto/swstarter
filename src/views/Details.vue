@@ -1,37 +1,39 @@
 <template>
-  <div v-if="item" class="bg-white shadow-container rounded-md p-12 w-details-container min-h-details-container mx-auto relative pb-32">
-    <h1 class="text-3xl font-bold">{{ itemName }}</h1>
+  <div v-if="item" class="bg-white shadow-container rounded-md p-12 px-10 mx-10 lg:w-details-container lg:mx-auto">
+    <div class="md:min-h-details-container">
+      <h1 class="text-3xl font-bold">{{ itemName }}</h1>
 
-    <div class="mt-12 w-full flex justify-between">
-      <div class="w-details-subcontainer">
-        <h2 class="text-2xl font-bold">{{ detailTitle }}</h2>
+      <div class="mt-12 w-full flex flex-col md:flex-row md:justify-between">
+        <div class="mb-10 md:w-details-subcontainer">
+          <h2 class="text-2xl font-bold">{{ detailTitle }}</h2>
 
-        <hr class="border-gray my-2"/>
+          <hr class="border-gray my-2"/>
 
-        <div class="text-xl">
-          <span v-html="detail"></span>
+          <div class="text-xl">
+            <span v-html="detail"></span>
+          </div>
         </div>
-      </div>
 
-      <div class="w-details-subcontainer">
-        <h2 class="text-2xl font-bold">{{ relatedTitle }}</h2>
+        <div class="md:w-details-subcontainer">
+          <h2 class="text-2xl font-bold">{{ relatedTitle }}</h2>
 
-        <hr class="border-gray my-2"/>
+          <hr class="border-gray my-2"/>
 
-        <div class="text-xl">
-          <span
-            class="cursor-pointer hover:underline text-detail-link"
-            v-for="detail in itemDetails"
-            :key="detail.url"
-            @click="selectItem(detail)"
-            >
-            {{ detailName(detail) }},
-          </span>
+          <div class="text-xl">
+            <span
+              class="cursor-pointer hover:underline text-detail-link"
+              v-for="detail in itemDetails"
+              :key="detail.url"
+              @click="selectItem(detail)"
+              >
+              {{ detailName(detail) }},
+            </span>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="absolute bottom-14">
+    <div class="mt-24 text-center md:text-left">
       <router-link
         :to="{ name: 'Home' }"
         class="
