@@ -1,7 +1,7 @@
 <template>
   <section
     id="results-container"
-    class="bg-white shadow-results-container rounded-md p-12 w-results-container min-h-results-container"
+    class="bg-white shadow-results-container rounded-md p-12"
   >
     <div id="container-title" class="mb-4 text-3xl font-bold text-black">
       Results
@@ -14,9 +14,9 @@
         <div
           v-for="result in searchResults"
           :key="getItemIdFromURL(result.url)"
-          class="result-item border-b border-gray py-4 flex items-center justify-between"
+          class="result-item border-b border-gray py-8 md:py-4 flex flex-col md:flex-row md:items-center md:justify-between"
         >
-          <span class="text-2xl font-bold">{{ getName(result) }}</span>
+          <span class="text-2xl font-bold mb-6 md:mb-0">{{ getName(result) }}</span>
 
           <button
             @click="seeDetails(result)"

@@ -11,7 +11,7 @@ describe('ResultsContainer.vue', () => {
   const wrapper = shallowMount(ResultsContainer, { store, localVue });
 
   it('check component container styles', () => {
-    expect(wrapper.attributes().class).toBe('bg-white shadow-results-container rounded-md p-12 w-results-container min-h-results-container');
+    expect(wrapper.attributes().class).toBe('bg-white shadow-results-container rounded-md p-12');
   });
 
   it('check container-title styles', () => {
