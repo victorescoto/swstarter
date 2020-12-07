@@ -1,16 +1,13 @@
 import axios from 'axios';
 
 const starWarsApi = axios.create({
-  baseURL: 'https://swapi.dev/api/',
-  timeout: 3000,
+  baseURL: 'http://localhost:8000/api/',
 });
 
-export const searchPeople = (term) => starWarsApi.get('people', {
-  params: { search: term },
-});
+const search = (resource, term) => starWarsApi.get(`${resource}/search/${term}`);
 
-export const searchMovies = (term) => starWarsApi.get('films', {
-  params: { search: term },
-});
+export const searchPeople = (term) => search('people', term);
+
+export const searchMovies = (term) => search('films', term);
 
 export const getResource = (url) => starWarsApi.get(url);
